@@ -1,6 +1,22 @@
 const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 
+const MT166 = require("mt166-js");
+
+let dispenser = new MT166({ port: 3, debug: true, autoDiscovery: true });
+// const MT166 = require("node-mt166");
+
+// //Available options
+// const options = {
+//   port: 6, //default
+//   baudRate: 9600, //default
+//   callbackConnection: console.log, //default
+//   autoDiscovery: false, //default
+// };
+
+// // Autodicovery Port
+// let dispenser = new MT166();
+
 // Check if Mac for when app is closed
 const isMac = process.platform === "darwin";
 const isDev = process.env.NODE_ENV !== "development";
@@ -13,9 +29,9 @@ function createMainWindows() {
     height: 1000,
   });
   // Open devtools if in dev mode
-  if (isDev) {
-    mainWindow.webContents.openDevTools();
-  }
+  //   if (isDev) {
+  //     mainWindow.webContents.openDevTools();
+  //   }
   mainWindow.loadFile(path.join(__dirname, "./renderer/index.html"));
 }
 
